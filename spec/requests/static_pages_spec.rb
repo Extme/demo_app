@@ -2,62 +2,40 @@ require 'spec_helper'
 
 describe "Static pages" do
     
-  let(:base_title) { "SocialNet.Demo" }
+  subject { page }
 
   describe "Home page" do
+    before { visit root_path }
    
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Sample App')
-    end
-
-    it "should have the base title" do
-      visit '/static_pages/home'
-      expect(page).to have_title("#{base_title}")
-    end
-     
-    it "should not have a custom page title" do
-      visit '/static_pages/home'
-      expect(page).to have_title('| Home')
-    end
+    it { should have_content('SocialNetwork') }
+    it { should have_title(full_title('')) }
+    it { should have_title('Home') }    
   end
+
 
   describe "Help page" do
+    before { visit help_path }
 
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help')
-    end
-
-    it "should have the base title" do
-      visit '/static_pages/help'
-      expect(page).to have_title("#{base_title}")
-    end
+    it { should have_content('Help page') }
+    it { should have_title(full_title('')) }
+    it { should have_title('Help') }
   end
 
+    
   describe "About page" do
+    before { visit about_path }
 
-    it "should have the content 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About Us')
-    end
-
-    it "should have the base title" do
-      visit '/static_pages/about'
-      expect(page).to have_title("#{base_title}")
-    end
+    it { should have_content('About Us') }
+    it { should have_title(full_title('')) }
+    it { should have_title('About') }
   end
 
   describe "Contact page" do
-
-    it "should have the content 'Contact'" do
-      visit '/static_pages/contact'
-      expect(page).to have_content('Contact')
-      end
-
-    it "should have the base title" do
-      visit '/static_pages/contact'
-      expect(page).to have_title("#{base_title}")
-      end
+    before { visit contact_path }
+ 
+    it { should have_content('Contact page') }
+    it { should have_title(full_title('')) }
+    it { should have_title('Contact') }
   end
 end
+
